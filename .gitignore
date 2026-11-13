@@ -1,0 +1,91 @@
+# ==============================================================================
+# RadioAuto ES - .gitignore Maestro
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Seguridad, Claves y Credenciales Privadas
+# ------------------------------------------------------------------------------
+# NUNCA comitear certificados de firma ni claves privadas a GitHub
+*.keystore
+*.jks
+android-app/app/release.keystore
+*.key
+*.pem
+*.p12
+
+# Archivos con rutas locales y datos del equipo del desarrollador
+local.properties
+android-app/local.properties
+.env
+*.env.local
+*.env.*.local
+
+# ------------------------------------------------------------------------------
+# 2. Archivos Temporales y Compilación de Android / Gradle
+# ------------------------------------------------------------------------------
+# Evita subir más de 400 MB de archivos dex, clases y cachés intermedias
+.gradle/
+**/.gradle/
+**/build/
+android-app/build/
+android-app/app/build/
+.kotlin/
+**/.kotlin/
+
+# Paquetes compilados (distribuir mediante GitHub Releases o localmente)
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Informes de análisis y logs
+*.log
+lint-results*
+reports/
+**/build/reports/
+
+# ------------------------------------------------------------------------------
+# 3. Entornos de Desarrollo (IDEs)
+# ------------------------------------------------------------------------------
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# ------------------------------------------------------------------------------
+# 4. Archivos Ocultos del Sistema Operativo
+# ------------------------------------------------------------------------------
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+
+# ------------------------------------------------------------------------------
+# 5. Servidor Mock / Docker / Node.js
+# ------------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*

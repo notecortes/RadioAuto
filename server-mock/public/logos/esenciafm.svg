@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g-esencia" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141E30"/>
+      <stop offset="100%" stop-color="#243B55"/>
+    </linearGradient>
+    <linearGradient id="g-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7971E"/>
+      <stop offset="100%" stop-color="#FFD200"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="40" fill="url(#g-esencia)"/>
+  <circle cx="100" cy="85" r="45" fill="none" stroke="url(#g-gold)" stroke-width="8"/>
+  <circle cx="100" cy="85" r="18" fill="url(#g-gold)"/>
+  <text x="100" y="165" font-family="system-ui, sans-serif" font-weight="900" font-size="19" fill="url(#g-gold)" text-anchor="middle" letter-spacing="2">ESENCIA FM</text>
+</svg>

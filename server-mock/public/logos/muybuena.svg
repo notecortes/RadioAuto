@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g-buena" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C9FF"/>
+      <stop offset="100%" stop-color="#92FE9D"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="40" fill="url(#g-buena)"/>
+  <path d="M100 60 C80 40 50 60 70 90 L100 120 L130 90 C150 60 120 40 100 60 Z" fill="#FF2A6D"/>
+  <circle cx="100" cy="80" r="10" fill="#FFFFFF"/>
+  <text x="100" y="165" font-family="system-ui, sans-serif" font-weight="900" font-size="20" fill="#1A202C" text-anchor="middle" letter-spacing="1">MUY BUENA</text>
+</svg>

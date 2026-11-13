@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g-gold2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE000"/>
+      <stop offset="100%" stop-color="#799F0C"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="40" fill="#1A1A1A"/>
+  <polygon points="70,95 85,65 100,85 115,65 130,95" fill="url(#g-gold2)"/>
+  <rect x="70" y="100" width="60" height="8" rx="4" fill="url(#g-gold2)"/>
+  <text x="100" y="165" font-family="system-ui, sans-serif" font-weight="900" font-size="22" fill="#FFE000" text-anchor="middle" letter-spacing="2">GOLD FM</text>
+</svg>

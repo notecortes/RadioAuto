@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g-bikini" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2027"/>
+      <stop offset="50%" stop-color="#203A43"/>
+      <stop offset="100%" stop-color="#2C5364"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="40" fill="url(#g-bikini)"/>
+  <circle cx="100" cy="85" r="40" fill="#FF007F"/>
+  <polygon points="60,110 140,110 100,140" fill="#00F0FF" opacity="0.8"/>
+  <text x="100" y="170" font-family="system-ui, sans-serif" font-weight="900" font-size="20" fill="#00F0FF" text-anchor="middle" letter-spacing="2">BIKINI FM</text>
+</svg>

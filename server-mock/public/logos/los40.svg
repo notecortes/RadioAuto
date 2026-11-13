@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="40" fill="#111111"/>
+  <path d="M50 70 L70 50 L100 80 L80 100 Z" fill="#0099FF"/>
+  <path d="M100 50 L130 50 L150 80 L120 80 Z" fill="#FFCC00"/>
+  <path d="M120 80 L150 80 L130 110 L100 110 Z" fill="#FF0033"/>
+  <path d="M80 100 L110 100 L90 130 L60 130 Z" fill="#00CC66"/>
+  <text x="100" y="165" font-family="system-ui, sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">LOS 40</text>
+</svg>

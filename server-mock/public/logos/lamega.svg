@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g-mega" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A2387"/>
+      <stop offset="50%" stop-color="#E94057"/>
+      <stop offset="100%" stop-color="#F27121"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="40" fill="url(#g-mega)"/>
+  <path d="M60 130 L60 70 L85 105 L110 70 L110 130" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M125 90 C125 75 145 75 145 90 C145 105 125 110 125 130 L148 130" stroke="#FFD700" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <text x="100" y="170" font-family="system-ui, sans-serif" font-weight="900" font-size="20" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">LA MEGA</text>
+</svg>

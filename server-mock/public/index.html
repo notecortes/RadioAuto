@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RadioAuto ES - Servidor Mock y Banco de Pruebas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Encabezado principal de la aplicación -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 3L11 7"></path>
+            <circle cx="7.5" cy="14" r="2.5"></circle>
+            <circle cx="16.5" cy="14" r="2.5"></circle>
+            <line x1="12" y1="12" x2="12" y2="16"></line>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">RadioAuto ES</h1>
+          <p class="brand-subtitle">Servidor Mock Local (Puerto 4112) & Reproductor de Pruebas Android Auto</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a href="/api/stations" target="_blank" class="btn btn-outline" title="Ver archivo JSON expuesto">
+          <span class="icon">{ }</span> Ver API JSON
+        </a>
+        <button id="btn-add-station" class="btn btn-primary">
+          <span class="icon">+</span> Nueva Emisora
+        </button>
+        <button id="btn-reset-catalog" class="btn btn-secondary" title="Restaurar catálogo original">
+          <span class="icon">&#x21bb;</span> Restaurar
+        </button>
+        <button id="btn-toggle-theme" class="btn btn-icon" title="Cambiar tema claro/oscuro">
+          <span id="theme-icon">&#9790;</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor principal del contenido -->
+  <main class="main-container">
+    <!-- Barra de búsqueda y controles de filtro -->
+    <section class="controls-card">
+      <!-- Buscador por texto -->
+      <div class="search-box-wrapper">
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Buscar por nombre, género musical, país o emisora..."
+          autocomplete="off"
+        >
+        <button id="btn-clear-search" class="btn-clear" style="display: none;" title="Limpiar búsqueda">&times;</button>
+      </div>
+
+      <!-- Filtro rápido de Favoritas / Todas -->
+      <div class="filter-section">
+        <span class="filter-label">Ver:</span>
+        <div class="pills-container">
+          <button id="filter-all-btn" class="pill active" data-view="all">Todas las emisoras</button>
+          <button id="filter-favorites-btn" class="pill pill-fav" data-view="favorites">
+            <span class="star-icon">⭐</span> Favoritas <span id="fav-counter-badge" class="badge-count">(0)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filtros por país -->
+      <div class="filter-section">
+        <span class="filter-label">País:</span>
+        <div id="country-filters" class="pills-container">
+          <button class="pill active" data-country="all">Todos los países</button>
+          <button class="pill" data-country="España">España</button>
+          <button class="pill" data-country="Estados Unidos">Estados Unidos</button>
+          <button class="pill" data-country="Alemania">Alemania</button>
+          <button class="pill" data-country="Reino Unido">Reino Unido</button>
+          <button class="pill" data-country="Suiza">Suiza</button>
+          <button class="pill" data-country="Francia">Francia</button>
+        </div>
+        <select id="country-select" class="filter-select" title="Seleccionar país de la lista">
+          <option value="all">Más países...</option>
+        </select>
+      </div>
+
+      <!-- Filtros por género -->
+      <div class="filter-section">
+        <span class="filter-label">Género:</span>
+        <div id="genre-filters" class="pills-container">
+          <button class="pill active" data-genre="all">Todos los géneros</button>
+          <button class="pill" data-genre="Indie">Indie</button>
+          <button class="pill" data-genre="Rock">Rock</button>
+          <button class="pill" data-genre="Pop">Pop</button>
+          <button class="pill" data-genre="Jazz">Jazz</button>
+          <button class="pill" data-genre="Classical">Clásica</button>
+          <button class="pill" data-genre="Dance">Dance / Electrónica</button>
+          <button class="pill" data-genre="News">Noticias / Talk</button>
+        </div>
+        <select id="genre-select" class="filter-select" title="Seleccionar género de la lista completa">
+          <option value="all">Más géneros...</option>
+        </select>
+      </div>
+
+      <!-- Barra de estadísticas y aviso de endpoint -->
+      <div class="stats-bar">
+        <span id="stations-counter">Cargando emisoras...</span>
+        <span class="api-notice">Endpoint Android Auto: <code>http://10.0.2.2:4112/api/stations</code></span>
+      </div>
+    </section>
+
+    <!-- Notificaciones visuales (toast) -->
+    <div id="toast-notification" class="toast-notification" style="display: none;"></div>
+
+    <!-- Rejilla de tarjetas de emisoras -->
+    <section class="stations-grid" id="stations-container">
+      <!-- Generado dinámicamente con JavaScript -->
+    </section>
+  </main>
+
+  <!-- Reproductor persistente en la parte inferior -->
+  <footer class="persistent-player" id="persistent-player">
+    <div class="player-container">
+      <!-- Info de la emisora actual -->
+      <div class="player-station-info">
+        <div class="player-logo-wrapper">
+          <img id="player-logo" src="/logos/radio_default.svg" alt="Logo de emisora">
+        </div>
+        <div class="player-meta">
+          <div class="player-title-row">
+            <h3 id="player-title" class="player-station-name">Selecciona una emisora</h3>
+            <button id="player-fav-btn" class="btn-fav-small" title="Añadir a favoritas" style="display: none;">
+              <span id="player-fav-icon">☆</span>
+            </button>
+            <span id="player-live-badge" class="badge-live" style="display: none;">
+              <span class="pulse-dot"></span> EN VIVO
+            </span>
+          </div>
+          <p id="player-subtitle" class="player-station-genre">Haz clic en reproducir en cualquier tarjeta</p>
+        </div>
+      </div>
+
+      <!-- Controles de reproducción -->
+      <div class="player-controls">
+        <button id="player-prev-btn" class="player-btn" title="Emisora anterior">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+          </svg>
+        </button>
+
+        <button id="player-play-btn" class="player-btn-primary" title="Reproducir / Pausar">
+          <svg id="play-icon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <polygon points="5,3 19,12 5,21"></polygon>
+          </svg>
+          <svg id="pause-icon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" style="display: none;">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </button>
+
+        <button id="player-next-btn" class="player-btn" title="Emisora siguiente">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+          </svg>
+        </button>
+
+        <!-- Indicador de ondas de sonido -->
+        <div id="sound-equalizer" class="sound-equalizer" style="display: none;">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+          <span class="bar bar-4"></span>
+        </div>
+      </div>
+
+      <!-- Control de volumen y estado -->
+      <div class="player-extra">
+        <span id="player-status-badge" class="player-status">Listo</span>
+        <div class="volume-container">
+          <button id="btn-mute" class="player-btn-icon" title="Silenciar">
+            <svg id="vol-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+          </button>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.8" class="volume-slider">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Elemento de audio nativo de HTML5 -->
+  <audio id="audio-stream" preload="none"></audio>
+
+  <!-- Modal para Añadir o Editar Emisora -->
+  <div id="modal-station" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-title">Añadir Nueva Emisora</h2>
+        <button id="btn-close-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <form id="form-station" class="modal-form">
+        <input type="hidden" id="form-is-edit" value="false">
+
+        <div class="form-group">
+          <label for="station-id">Identificador único (ID):</label>
+          <input type="text" id="station-id" required placeholder="ej: rock_fm, radio_3">
+          <small class="form-hint">Sólo letras minúsculas, números y guiones bajos.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="station-name">Nombre de la emisora:</label>
+          <input type="text" id="station-name" required placeholder="ej: Rock FM">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="station-genre">Género musical:</label>
+            <input type="text" id="station-genre" required placeholder="ej: Rock / Clásicos">
+          </div>
+          <div class="form-group">
+            <label for="station-country">País:</label>
+            <input type="text" id="station-country" required placeholder="ej: España">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="station-stream">URL del Stream de Audio (MP3/AAC/HLS):</label>
+          <input type="url" id="station-stream" required placeholder="https://stream.servidor.com/listen.mp3">
+          <small class="form-hint">Debe ser accesible públicamente mediante HTTPS/HTTP.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="station-logo">URL del Logotipo (SVG, PNG, JPG):</label>
+          <input type="text" id="station-logo" required placeholder="/logos/laindie.svg o https://...">
+        </div>
+
+        <div class="form-group">
+          <label for="station-desc">Descripción (opcional):</label>
+          <textarea id="station-desc" rows="2" placeholder="Breve descripción del estilo de la emisora"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel-modal" class="btn btn-outline">Cancelar</button>
+          <button type="submit" id="btn-save-station" class="btn btn-primary">Guardar Emisora</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

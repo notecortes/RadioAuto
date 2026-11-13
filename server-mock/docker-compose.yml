@@ -1,0 +1,24 @@
+# ==============================================================================
+# RadioAuto ES - Docker Compose para Servidor Mock y Banco de Pruebas
+# Mapeo estricto a http://localhost:4112
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  server-mock:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: radioauto-server-mock
+    restart: unless-stopped
+    ports:
+      - "4112:4112"
+    volumes:
+      # Sincronización en vivo del catálogo y frontend estático
+      - ./stations.json:/app/stations.json
+      - ./default-stations.json:/app/default-stations.json
+      - ./public:/app/public
+    environment:
+      - PORT=4112
+      - NODE_ENV=production

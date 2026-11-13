@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g-indie" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7928CA"/>
+      <stop offset="100%" stop-color="#FF0080"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="40" fill="url(#g-indie)"/>
+  <circle cx="100" cy="100" r="70" fill="rgba(0,0,0,0.2)"/>
+  <path d="M70 130 L70 70 L90 70 L90 110 L130 110 L130 130 Z" fill="#FFFFFF"/>
+  <circle cx="130" cy="80" r="10" fill="#00DFD8"/>
+  <text x="100" y="165" font-family="system-ui, sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">LA INDIE</text>
+</svg>

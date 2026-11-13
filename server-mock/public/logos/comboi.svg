@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g-comboi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11998E"/>
+      <stop offset="100%" stop-color="#38EF7D"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="40" fill="url(#g-comboi)"/>
+  <circle cx="100" cy="85" r="38" fill="#FFFFFF"/>
+  <path d="M85 85 Q100 65 115 85 Q100 105 85 85 Z" fill="#11998E"/>
+  <text x="100" y="165" font-family="system-ui, sans-serif" font-weight="900" font-size="20" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">COMBOI FM</text>
+</svg>

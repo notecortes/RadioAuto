@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RadioAuto ES</string>
+    <string name="category_favorites">⭐ Favoritas</string>
+    <string name="category_genres">📻 Por Género</string>
+    <string name="category_countries">🌍 Por País</string>
+    <string name="live_stream_label">EN VIVO</string>
+    <string name="unknown_station">Emisora en directo</string>
+    <string name="buffering_text">Conectando con la emisora…</string>
+</resources>

@@ -1,0 +1,23 @@
+# ==============================================================================
+# RadioAuto ES - Docker Compose Root
+# Permite levantar el entorno directamente con: docker compose up -d --build
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  server-mock:
+    build:
+      context: ./server-mock
+      dockerfile: Dockerfile
+    container_name: radioauto-server-mock
+    restart: unless-stopped
+    ports:
+      - "4112:4112"
+    volumes:
+      - ./server-mock/stations.json:/app/stations.json
+      - ./server-mock/default-stations.json:/app/default-stations.json
+      - ./server-mock/public:/app/public
+    environment:
+      - PORT=4112
+      - NODE_ENV=production

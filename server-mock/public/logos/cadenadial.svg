@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g-dial" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF512F"/>
+      <stop offset="100%" stop-color="#DD2476"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="40" fill="url(#g-dial)"/>
+  <circle cx="100" cy="85" r="32" fill="#FFFFFF"/>
+  <polygon points="92,72 115,85 92,98" fill="#FF512F"/>
+  <text x="100" y="165" font-family="system-ui, sans-serif" font-weight="900" font-size="20" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">DIAL</text>
+</svg>
